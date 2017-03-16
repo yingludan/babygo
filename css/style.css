@@ -1,0 +1,164 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#container  a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #e6e6e8;
+}
+
+#container {
+  padding: 50px 0;
+  overflow: hidden;
+  margin:100px auto;
+}
+
+#sliderContainer {
+  position: relative;
+  width: 90%;
+  max-width: 972px;
+  margin: 0 auto;
+}
+
+#slider {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border: #DEDEDE solid 1px;
+  padding: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+}
+
+#slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slide {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slide.active {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slideCopy {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background-color: #fff;
+  color: #333;
+}
+
+.slideCopy p { font-size: 18px; }
+
+.arrow {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: auto 0;
+  cursor: pointer;
+  z-index: 100;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+#prev {
+  left: 30px;
+  background-image: url(../img/arrow-left.png);
+  background-position: 13px center;
+  transform: translateX(20px);
+  -webkit-transform: translateX(20px);
+}
+
+#next {
+  right: 30px;
+  background-image: url(../img/arrow-right.png);
+  background-position: 16px center;
+  transform: translateX(-20px);
+  -webkit-transform: translateX(-20px);
+}
+
+.sliderHovered .arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sliderHovered #prev {
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+}
+
+.sliderHovered #next {
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+}
+
+
+
+
+/*热卖推荐*/
+
+/*公共部分*/
+.wc960{margin:0 auto;width:1200px;}
+.fl{float:left; }
+.fr{float:right;}
+.mt20{margin-top:20px; }
+.icon{background: url(../images/icon.png) no-repeat 0 0;}
+
+.warp-pic-list li{float:left;display:inline;}
+.warp-pic-list .img_wrap{display:block;font-size:0;overflow:hidden;}
+.warp-pic-list .text-area{background-color:#f2f2f2; font-family:"微软雅黑"; }
+.text-area p span{ padding-left:200px; color:#C00; padding-top:10px;}
+/*全局板块*/
+.row .hd{ border-bottom:solid 3px #ff6e7b; height:70px;}
+.row .hd .title{font:30px/40px "微软雅黑","Microsoft YaHei","黑体","SimHei";}
+.row .hd .title span{ color:#ff6e7b;}
+/*全局页签*/
+.tab-T-3{width:66px;}
+.tab-T-3 li{width:12px;height:12px;font-size:0;background-color:#dfdfdf;float:left;margin-left:10px;cursor:pointer;display:inline;}
+.tab-T-3 li.cur{background-color:#ff6e7b;}
+/*热门车型*/
+.rowE .warp-pic-list{position:relative;width:1200px;height:450px;overflow:hidden;}
+.rowE .count li{ margin-right:15px;width:289px;height:450px; position:relative;left:-5px; }
+.rowE .count .img_wrap{width:289px;height:289px;}
+.rowE .count li .text-area{padding:10px 0 10px 15px;}
+.rowE .count li .text-area  p{line-height:24px;height:24px;}
+.rowE .count li:hover .text-area,.rowE .count li.hover .text-area{background-color:#ff6e7b;color:#fff;}
+.rowE .count .p-num{font-family:"Tahoma";font-weight:bold;}
+.rowE .btn{display:block;height:55px;position:absolute;top:78px;width:35px;z-index:200;cursor:pointer;}
+.rowE .prev{ background-position:0 -88px;left:0;}
+.rowE .prev:hover{background-position:0 -144px;}
+.rowE .next{ background-position:0 -200px;right:0;}
+.rowE .next:hover{background-position:0 -256px;}

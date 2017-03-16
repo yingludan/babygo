@@ -1,0 +1,1634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>demo</title>
+
+<link rel="stylesheet" type="text/css" href="css.css" />
+<script type="text/javascript" src=""></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/indexjs.js"></script>
+<script type="text/javascript" src="js/jquery.js"/></script>
+<script type="text/javascript">
+function banner(){	
+	var bn_id = 0;
+	var bn_id2= 1;
+	var speed33=5000;
+	var qhjg = 1;
+    var MyMar33;
+	$("#banner .d1").hide();
+	$("#banner .d1").eq(0).fadeIn("slow");
+	if($("#banner .d1").length>1)
+	{
+		$("#banner_id li").eq(0).addClass("nuw");
+		function Marquee33(){
+			bn_id2 = bn_id+1;
+			if(bn_id2>$("#banner .d1").length-1)
+			{
+				bn_id2 = 0;
+			}
+			$("#banner .d1").eq(bn_id).css("z-index","2");
+			$("#banner .d1").eq(bn_id2).css("z-index","1");
+			$("#banner .d1").eq(bn_id2).show();
+			$("#banner .d1").eq(bn_id).fadeOut("slow");
+			$("#banner_id li").removeClass("nuw");
+			$("#banner_id li").eq(bn_id2).addClass("nuw");
+			bn_id=bn_id2;
+		};
+	
+		MyMar33=setInterval(Marquee33,speed33);
+		
+		$("#banner_id li").click(function(){
+			var bn_id3 = $("#banner_id li").index(this);
+			if(bn_id3!=bn_id&&qhjg==1)
+			{
+				qhjg = 0;
+				$("#banner .d1").eq(bn_id).css("z-index","2");
+				$("#banner .d1").eq(bn_id3).css("z-index","1");
+				$("#banner .d1").eq(bn_id3).show();
+				$("#banner .d1").eq(bn_id).fadeOut("slow",function(){qhjg = 1;});
+				$("#banner_id li").removeClass("nuw");
+				$("#banner_id li").eq(bn_id3).addClass("nuw");
+				bn_id=bn_id3;
+			}
+		})
+		$("#banner_id").hover(
+			function(){
+				clearInterval(MyMar33);
+			}
+			,
+			function(){
+				MyMar33=setInterval(Marquee33,speed33);
+			}
+		)	
+	}
+	else
+	{
+		$("#banner_id").hide();
+	}
+}
+</script>
+<style type="text/css">
+h1 {
+	font-family: "微软雅黑";
+	font-size: 40px;
+	margin: 20px 0;
+	;
+	border-bottom: solid 1px #ccc;
+	padding-bottom: 20px;
+	letter-spacing: 2px;
+}
+.time-item strong {
+	background: #ff6e7b;
+	color: #fff;
+	line-height: 49px;
+	font-size: 36px;
+	font-family: Arial;
+	padding: 0 10px;
+	margin-right: 10px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+#day_show {
+	float: left;
+	line-height: 49px;
+	color: #c71c60;
+	font-size: 32px;
+	margin: 0 10px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.item-title .unit {
+	background: none;
+	line-height: 49px;
+	font-size: 24px;
+	padding: 0 10px;
+	float: left;
+}
+/*.time-item { color:#ff6e7b; font-family:"微软雅黑";}*/
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+.clearfix {
+	display: inline-table
+}
+*html .clearfix {
+	height: 1%
+}
+.clearfix {
+	display: block
+}
+*+html .clearfix {
+	min-height: 1%
+}
+
+
+/* banner */
+.banner{height:560px;overflow:hidden; position:relative;}
+.banner .d1{width:100%;height:560px;display:block;position:absolute;left:0px;top:0px;}
+.banner .d2{width:100%;height:30px;clear:both;position:absolute;z-index:100;left:0px;top:520px;}
+.banner .d2 ul{float:left;position:absolute;left:50%;top:0;margin:0 0 0 -96px;display:inline;}
+.banner .d2 li{width:17px;height:15px;overflow:hidden;cursor:pointer;background:url(images/img1.png) no-repeat center;float:left;margin:0 3px;display:inline;}
+.banner .d2 li.nuw{background:url(images/img1_1.png) no-repeat center;}
+</style>
+<script type="text/javascript" src="js/jquery.min2.js"></script>
+<script type="text/javascript">
+
+var intDiff = parseInt(70000);//倒计时总秒数量
+
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+$(function(){
+	timer(intDiff);
+});	
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery1.7.min.js"></script>
+<script type="text/javascript" src="js/scroll.1.3.js"></script>
+
+
+</head>
+ 
+<body> 
+<div class="home_top">
+  <div class="h_t_login">
+    <div class="h_t_l_box"><a href=""> 
+      <div class="handphoneshop">
+        <p>手机商城</p>
+      </div>
+      </a>
+      <ul>
+        <li>欢迎来到babygo商城！</li>
+        <li><a href="denglu.html">登录</a></li>
+        <li><a href="zhuce.html">注册</a></li>
+        <li><a href="bangzhu.html">帮助中心</a></li>
+        <li><a href="personal center.html">个人中心</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="h_t_l_box2">
+    <h1><a href="index.html"><img src="images/logo.png"/></a></h1>
+    <div class="top_search">
+      <input name="search" type="text" placeholder="请输入您要查询的内容"/>
+      <p><a href="">搜索</a></p>
+      <dl>
+        <dt>热门搜索：</dt>
+        <dt><a href="">保温杯</a></dt>
+        <dt><a href="zhiniaoku.html"><span>纸尿裤</span></a></dt>
+        <dt><a href="naifen.html"><span>奶粉</span></a></dt>
+        <dt><a href="">推车</a></dt>
+      </dl>
+    </div>
+    <div class="h_t_l_box2_shoppingcar">
+      <p><a href="shoppingcar.html">购物车</a></p> 
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="h_t_l_box3">
+    <div class="b3_listbox">
+      <div class="totallist">
+        <p><a href="fenleiye.html">全部商品分类</a></p>
+        <a href=""><img src="images/箭头1.jpg"/></a>
+        <div class="clear"></div>
+        <div class="totallist_inbox">
+          <div class="hoverbox">
+            <div class="inbox_part1">
+              <h2 class="menu_inmenu_1"><a href=""> <img src="images/ico001.jpg"/>哺乳喂养</a></h2> 
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="fenleiye.html">玻璃奶瓶</a></li>
+                    <li><a href="fenleiye.html">PES奶瓶</a></li>
+                    <li><a href="fenleiye.html">ABS树脂奶瓶</a></li>
+                    <li><a href="fenleiye.html">PPSU奶瓶</a></li>
+                    <li><a href="fenleiye.html">PP奶瓶</a></li>
+                    <li><a href="fenleiye.html">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              
+              
+              
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> 
+            <h2 class="menu_inmenu_2"><a href=""> <img src="images/ico002.jpg"/>奶粉辅食</a></h2>
+              
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> <h2><a href=""><img src="images/ico003.jpg"/>纸尿裤湿巾</a></h2>
+            
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1">
+            <h2><a href=""><img src="images/ico004.jpg"/>洗护用品</a></h2>
+             
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> <h2><a href=""><img src="images/ico005.jpg"/>宝宝服饰</a></h2>
+              
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> <h2><a href=""><img src="images/ico006.jpg"/>童车座椅</a></h2>
+              
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"><h2><a href=""><img src="images/ico007.jpg"/>玩具</a></h2>
+              
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> <h2><a href=""><img src="images/ico008.jpg"/>床椅寝具</a></h2>
+              
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"> <h2><a href=""><img src="images/ico009.jpg"/>育儿书籍</a></h2>
+             
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hoverbox">
+            <div class="inbox_part1"><h2><a href=""><img src="images/ico010.jpg"/>清洁用品</a></h2>
+             
+              <div class="in_box">
+                <div class="part1">
+                  <div class="in_box_1">
+                    <h5>奶瓶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">玻璃奶瓶</a></li>
+                    <li><a href="">PES奶瓶</a></li>
+                    <li><a href="">ABS树脂奶瓶</a></li>
+                    <li><a href="">PPSU奶瓶</a></li>
+                    <li><a href="">PP奶瓶</a></li>
+                    <li><a href="">奶瓶配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>奶嘴</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">大流量奶嘴</a></li>
+                    <li><a href="">中流量奶嘴</a></li>
+                    <li><a href="">小流量奶嘴</a></li>
+                    <li><a href="">可调速/果汁奶嘴</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>水杯/水壶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">饮水杯</a></li>
+                    <li><a href="">奶嘴杯</a></li>
+                    <li><a href="">保温杯/壶</a></li>
+                    <li><a href="">吸管杯</a></li>
+                    <li><a href="">鸭嘴杯</a></li>
+                    <li><a href="">配件</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>辅助用品</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">保温袋/餐袋</a></li>
+                    <li><a href="">奶粉罐/盒</a></li>
+                    <li><a href="">奶瓶刷/奶嘴刷</a></li>
+                    <li><a href="">奶瓶夹</a></li>
+                    <li><a href="">食物剪刀</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>哺喂电器</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">BB煲/电粥锅</a></li>
+                    <li><a href="">调奶器</a></li>
+                    <li><a href="">消毒锅</a></li>
+                    <li><a href="">暖奶器</a></li>
+                    <li><a href="">煮蛋器</a></li>
+                    <li><a href="">搅拌器</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>安抚奶嘴/牙胶</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">硅胶牙胶</a></li>
+                    <li><a href="">固齿器</a></li>
+                    <li><a href="">硅胶安抚奶嘴</a></li>
+                    <li><a href="">注水牙胶</a></li>
+                    <li><a href="">奶嘴链</a></li>
+                  </ul>
+                </div>
+                <div class="part1 part2">
+                  <div class="in_box_1">
+                    <h5>餐具</h5>
+                  </div>
+                  <div class="clear"></div>
+                  <ul>
+                    <li><a href="">套装组合</a></li>
+                    <li><a href="">保鲜盒</a></li>
+                    <li><a href="">便当盒</a></li>
+                    <li><a href="">碗/筷/勺</a></li>
+                    <li><a href="">辅食喂养餐具</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--全部商品分类-->
+     <div class="caidan">
+      <ol>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="naifen.html">奶粉</a></li>
+        <li><a href="zhiniaoku.html">纸尿裤</a></li>
+        <li><a href="zhengpin.html">正品保证 &or;</a>
+        <dl class="caidan_dl_1">
+        <dt><a href="zhengpin.html">正品保证</a></dt>
+        <dt><a href="tuihuo.html">退货政策</a></dt>
+        <dt><a href="bangzhu.html">联系我们</a></dt>
+        </dl></li>
+        <li><a href="">宝贝俱乐部</a></li>
+      </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!--top-->
+<div class="banner" id="banner" > <a href="naifen.html" class="d1" style="background:url(img/homebanner_2.jpg) center no-repeat;"></a> <a href="naifen.html" class="d1" style="background:url(img/homebanner_1.png) center no-repeat;"></a> <a href="naifen.html" class="d1" style="background:url(img/homebanner_3.jpg) center no-repeat;"></a>
+  <div class="d2" id="banner_id">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">banner()</script>
+<div class="home_container"> 
+
+  <!--  <div class="home_bannerbox">
+    <div class="home_banner"><img src="images/商城网站banner.jpg" /></div>
+  </div>-->
+  <div class="h_c_part01">
+    <div class="h_c_part01box">
+      <div class="h_c_p_11">
+        <div class="wc960 row rowE">
+          <div class="hd clearfix">
+            <div class="fl">
+              <h2 class="title">热门<span>推荐</span></h2>
+            </div>
+            <div class="fr">
+              <ul id="tabT04" class="tab-T-3 mt20 clearfix">
+                <li class="cur"></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bd mt20">
+            <div id="sca1" class="warp-pic-list">
+              <div id="wrapBox1" class="wrapBox">
+                <ul id="count1" class="count clearfix">
+                  <li> <a href="zhiniaoku.html" class="img_wrap"><img src="images/lunbo001.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo002.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="zhiniaoku.html" class="img_wrap"><img src="images/lunbo003.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo008.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="#2664" class="img_wrap"><img src="images/lunbo005.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo006.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo007.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="zhiniaoku.html" class="img_wrap"><img src="images/lunbo008.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="zhiniaoku.html" class="img_wrap"><img src="images/lunbo001.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo002.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="naifen.html" class="img_wrap"><img src="images/lunbo003.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="#2673" class="img_wrap"><img src="images/lunbo007.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="#2753" class="img_wrap"><img src="images/lunbo005.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="#2725" class="img_wrap"><img src="images/lunbo006.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                  <li> <a href="#2696" class="img_wrap"><img src="images/lunbo007.jpg" width="289" height="289" border="0"></a>
+                    <div class="text-area">
+                      <p>FIVERAMS 五羊 婴儿手口湿巾<br />
+                        80片X5包带盖</p>
+                      <p><span class="p-num">¥ 28.8</span></p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <a id="right1" class="prev icon btn"></a> <a id="left1" class="next icon btn"></a> </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+$(document).ready(function(){
+
+	$("#count1").dayuwscroll({
+		parent_ele:'#wrapBox1',
+		list_btn:'#tabT04',
+		pre_btn:'#left1',
+		next_btn:'#right1',
+		path: 'left',
+		auto:true,
+		time:3000,
+		num:5,
+		gd_num:5,
+		waite_time:1000
+	});
+
+});
+</script> 
+      </div>
+      <div class="hot_sale2">
+        <div class="h_s2_img"><a href="naifen.html"><img src="images/0005.jpg" /></a>
+          <p><a href="naifen.html">立即抢购</a></p>
+        </div>
+        <div class="h_s2_img h_s2_img2"><a href="zhiniaoku.html"><img src="images/0006.jpg" /></a>
+          <p><a href="zhiniaoku.html">立即抢购</a></p>
+        </div>
+        <div class="h_s2_img h_s2_img2"><a href="fenlei.html"><img src="images/00007.jpg" /></a>
+          <p><a href="fenlei.html">立即抢购</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--热销推荐-->
+  <div class="h_c_part02">
+    <h2>今日<span>特卖</span></h2>
+    <div align="center" style="width:416px; margin:0 auto; margin-top:-45px">
+      <div class="time-item"> <span id="day_show">还剩</span> <strong id="hour_show">0时</strong> <strong id="minute_show">0分</strong> <strong id="second_show">0秒</strong> </div>
+      <!--倒计时模块--> 
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic01.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic02.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic03.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic04.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic05.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic06.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic07.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic08.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic09.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+    <div class="h_c_p02_pic1"><a href="promotion area.html"><img src="images/pic010.png" /></a>
+      <div class="h_c_p02_picbox">
+        <h4>BABY护肤专场</h4>
+        <hr color="#ececec" />
+        <p>保湿/润肤/完美呵护</p>
+        <p>以“爱无添加，分龄呵护”为全新理念，8大无添加，确保每一个产品少刺激、温和安全。产品涵盖脆弱肌呵护（准妈妈）、婴儿（0-12个月）亲润、幼儿（12-36个月）倍润、儿童（36个月）优润及通用护理等五大系列。</p>
+        <h3>29.00元起</h3>
+        <h5><a href="promotion area.html">点击进入</a></h5>
+      </div>
+    </div>
+  </div>
+  <!--今日特卖-->
+  <div class="h_c_part03">
+    <h2>品牌<span>推荐</span></h2>
+    <div class="h_c_p3_left"><a href="naifen.html"><img src="images/pinpai001.jpg" /></a><a href="naifen.html"><img src="images/pinpai002.jpg" /></a></div>
+    <div class="h_c_p3_right">
+      <table>
+        <tr>
+          <td><a href="naifen.html"><img src="images/01.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/02.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/03.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/04.jpg" /></a></td>
+        </tr>
+        <tr>
+          <td><a href="naifen.html"><img src="images/05.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/06.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/07.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/08.jpg" /></a></td>
+        </tr>
+        <tr>
+          <td><a href="naifen.html"><img src="images/09.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/10.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/11.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/12.jpg" /></a></td>
+        </tr>
+        <tr>
+          <td><a href="naifen.html"><img src="images/13.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/14.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/15.jpg" /></a></td>
+          <td><a href="naifen.html"><img src="images/16.jpg" /></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--品牌推荐--> 
+</div>
+
+
+<div class="home_fooer">
+  <div class="footer_box1">
+    <div class="quickbutton">
+      <div class="f_qb_01"><a href="zhengpin.html"><img src="images/pinzhi.png"/></a>
+        <p>全球化采购、正品保障</p>
+      </div>
+      <div class="f_qb_01 f_qb_02"><a href=""><img src="images/kacheico.png" /></a>
+        <p>一站式服务、送货上门</p>
+      </div>
+      <div class="f_qb_01 f_qb_02"><a href="bangzhu.html"><img src="images/diqiuico.png"/></a>
+        <p>顾问式客服、全年无休</p>
+      </div>
+      <div class="f_qb_01 f_qb_02"><a href="bangzhu.html"><img src="images/xinico.png" /></a>
+        <p>个性化导购、售后无忧</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer_box2">
+    <table>
+      <tr>
+        <th>购物指南</th>
+        <th>支付方式</th>
+        <th>配送方式</th>
+        <th>售后服务</th>
+        <th>联系我们</th>
+      </tr>
+      <tr>
+        <td><a href="">购物流程</a></td>
+        <td><a href="pay.html">在线支付</a></td>
+        <td><a href="">配送方式</a></td>
+        <td><a href="zhengpin.html">正品保证</a></td>
+        <td><a href="">新浪微博</a></td>
+      </tr>
+      <tr>
+        <td><a href="bangzhu.html">常见问题</a></td>
+        <td></td>
+        <td><a href="delivery address.html">收货地址</a></td>
+        <td><a href="tuihuo.html">退货政策</a></td>
+        <td><a href="bangzhu.html">联系客服</a></td>
+      </tr>
+      <tr>
+        <td><a href="">优惠奖券</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="bangzhu.html">帮助中心</a></td>
+        <td><a href="bangzhu.html">我要投诉</a></td>
+      </tr>
+    </table>
+  </div>
+  <div class="footer_box3">
+    <ul>
+      <li class="f_ul_li"><a href="index.html">网站首页</a></li>
+      <li><a href="">公司简介</a></li>
+      <li><a href="">人才招聘</a></li>
+      <li><a href="">合作联系</a></li>
+      <li><a href="">企业理念</a></li>
+    </ul>
+    <div class="clear"></div>
+    <p>由本网站发布的尚品或服务的商业宣传活动均属“广告”</p>
+    <p>Copyright?2006-2017  babygo婴幼儿产品有限公司 babygo.com ALL Right Reserved &nbsp;&nbsp;&nbsp;&nbsp;客服热线：041-2365879 658412</p>
+  </div>
+</div>
+
+
+
+</body>
+</html>
